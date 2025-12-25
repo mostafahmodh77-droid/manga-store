@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name = "author" content=" mostafa">
+  <title> manga berserk</title>
+
+  <!-- خطوط Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ----------------------------- */
+    /* إعداد المتغيرات والألوان العامة */
+    /* ----------------------------- */
+    :root{
+      --bg-1: #f5f7f6;       /* خلفية فاتحة مريحة */
+      --bg-2: #18294c;       /* تدرّج بسيط للخلفية */
+      --card-bg: #174343c2;    /* خلفية بطاقات الكتب */
+      --muted: #000000;      /* لون النصوص الثانوية */
+      --accent: #3b82f6;     /* لون أزرار وعناصر بارزة */
+      --radius: 14px;        /* درجة الاستدارة */
+      --soft-shadow: 0 6px 18px rgb(255, 255, 255); /* ظل خفيف */
+    }
+
+    /* إزالة الهوامش + تنعيم الخط */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Cairo', sans-serif;
+      background: linear-gradient(180deg,var(--bg-1),var(--bg-2)); /* خلفية مريحة للعين */
+      padding:40px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    /* الحاوية العامة */
+    .wrap{max-width:1100px;width:100%;}
+
+    /* ----------------------------- */
+    /* رأس الصفحة */
+    /* ----------------------------- */
+    header{
+      margin-bottom:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      width:56px;height:56px;border-radius:12px;
+      background:linear-gradient(135deg,#8fd3f4 0%, #84fab0 100%);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;
+      box-shadow:var(--soft-shadow);
+    }
+
+    h1{margin:0;font-size:22px}
+    p.lead{margin:0;color:var(--muted)}
+
+    /* ----------------------------- */
+    /* شبكة البطاقات (6 حاويات) */
+    /* ----------------------------- */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); /* يجعلها مرنة */
+      gap:18px;
+    
+    }
+
+    /* بطاقة الكتاب */
+    .card{
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--soft-shadow);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:220px;
+      border:1px solid rgb(244, 247, 249);
+      transition:transform .22s ease, box-shadow .22s ease;
+      
+    }
+
+    /* تأثير عند تمرير الفأرة */
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 14px 36px rgba(37,54,63,0.1);
+    }
+
+    /* صورة غلاف الكتاب */
+    .cover{
+      width:64px;height:86px;border-radius:6px;
+      background:linear-gradient(180deg,#fef3c7,#fff1cc);
+      box-shadow:0 6px 14px rgba(17, 31, 42, 0);
+      display:grid;place-items:center;
+      border:1px solid rgba(0, 0, 0, 0);
+    }
+
+    .book-head{display:flex;gap:12px}
+    .meta{flex:1}
+    .book-title{margin:#f8fafc;font-size:16px;font-weight:700}
+    .author{font-size:13px;color:var(--muted)}
+    .desc{font-size:13px;color:var(--muted);line-height:1.45}
+
+    /* أزرار */
+    .actions{margin-top:auto;display:flex;gap:8px}
+    .btn{
+      padding:8px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      background:transparent;
+      border:1px solid rgb(255, 255, 255);
+    }
+    .btn.primary{
+      background:linear-gradient(90deg,#6ea8fe,#4f46e5);
+      color:white;
+      border:none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ============================== -->
+    <!-- رأس الموقع: شعار + عنوان -->
+    <!-- ============================== -->
+    <header>
+      <div style="display:flex;gap:14px;align-items:center;">
+    <img src="https://th.bing.com/th/id/OIP.EJLp5e3DhN0iOhkiYf9-9gHaNK?w=115&h=180&c=7&r=0&o=5&cb=ucfimg2&dpr=1.3&pid=1.7&ucfimg=1" class="logo" alt="logo">
+        <div>
+          <i><h1> all manga berserk is here </h1></i>
+        </div>
+      </div>
+    <!-- حقل البحث -->
+    <div id="searchBox">
+        <input type="text" id="searchInput" placeholder="ابحث هنا عن الفصل....">
+        <button onclick="performSearch()">بحث</button>
+    </div>
+    <script>
+        const searchIcon = document.getElementById('searchIcon');
+        const searchBox = document.getElementById('searchBox');
+        const searchInput = document.getElementById('searchInput');
+        // عند الضغط على الأيقونة تظهر حقل البحث
+        searchIcon.addEventListener('click', () => {
+            searchBox.style.display = searchBox.style.display === 'none' ? 'block' : 'none';
+            searchInput.focus(); // يحدد المؤشر داخل الحقل
+        });
+        // دالة البحث
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if(query) {
+                // هنا نقدر نبحث داخل الموقع أو نوجه المستخدم لصفحة نتائج
+                // مثال توجيه لموقع Google للبحث
+                window.location.href = https://www.google.com/search?q=${encodeURIComponent(query)};
+            }
+          }
+        // دعم الضغط على Enter داخل الحقل للبحث
+        searchInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+    </header>
+
+    <!-- ============================== -->
+    <!-- شبكة الكتب الستة -->
+    <!-- ============================== -->
+
+    <section class="grid">
+
+      <!-- الكتاب 1 -->
+      <article class="card">
+        <div class="book-head">
+         <div class="cover">
+          <img src="berserk/1.jpeg" class="logo" alt="logo" style="width:100%; height:100%; object-fit:cover;">
+         </div>
+          <div class="meta">
+            <h2 class="book-title"> berserk chapter 1</h2>
+            <div class="author">kentaro miura</div>
+            <p class="desc">في عالم مظلم وعنيف، يظهر المحارب القوي جوتس وهو يقاتل وحوش شيطانية باستخدام سيفه الضخم. نكتشف قوته ومهاراته القتالية الاستثنائية، ثم يلتقي بفرقة الصقور وزعيمها غريفيث الذي يقدّر قوته ويأخذه ضمن المجموعة. الفصل يركّز على تقديم الشخصيات والصراع القاسي بين البشر والقوى الخارقة في عالم لا يرحم.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn">اذهب لقرات الفصل</button>
+          <button class="btn primary">أضف للمفضلة❤️</button>
+        </div>
+      </article>
+
+      <!-- الكتاب 2 -->
+      <article class="card">
+        <div class="book-head">
+          <div class="cover">
+            <img src="berserk/91MME9WYGpL2.jpg" class="logo" alt="logo" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="meta">
+            <h2 class="book-title">berserk chapter 2</h2>
+            <div class="author">kentaro miura</div>
+            <p class="desc">غَتس يظهر كمحارب وحيد شديد القسوة، يقاتل بلا رحمة، ويتضح إن هدفه الأساسي هو الانتقام من الرسل، مع تلميحات لماضٍ مظلم مليان ألم.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn">اذهب لقرات الفصل</button>
+          <button class="btn primary">أضف للمفضلة❤️</button>
+        </div>
+      </article>
+
+      <!-- الكتاب 3 -->
+      <article class="card">
+        <div class="book-head">
+          <div class="cover">
+         <img src="berserk/Berserk-Deluxe-Volume-3.jpg" class="logo" alt="logo" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="meta">
+            <h2 class="book-title">berserk chapter 3</h2>
+            <div class="author">kentaro miura</div>
+            <p class="desc"></p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn">اذهب لقرات الفصل</button>
+          <button class="btn primary">أضف للمفضلة❤️</button>
+        </div>
+      </article>
+
+      <!-- الكتاب 4 -->
+      <article class="card">
+        <div class="book-head">
+          <div class="cover">
+         <img src="berserk/4.jpg" class="logo" alt="logo" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="meta">
+            <h2 class="book-title">berserk chapter 4</h2>
+            <div class="author">kentaro miura</div>
+            <p class="desc"></p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn">اذهب لقرات الفصل</button>
+          <button class="btn primary">أضف للمفضلة❤️</button>
+        </div>
+      </article>
+
+      <!-- الكتاب 5 -->
+      <article class="card">
+        <div class="book-head">
+          <div class="cover">
+         <img src="berserk/5.jpeg" class="logo" alt="logo" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="meta">
+            <h2 class="book-title">berserk chapter 5</h2>
+            <div class="author">kentaro miura</div>
+            <p class="desc"></p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn">اذهب لقرات الفصل</button>
+          <button class="btn primary">أضف للمفضلة❤️</button>
+        </div>
+      </article>
+
+      <!-- الكتاب 6 -->
+      <article class="card">
+        <div class="book-head">
+          <div class="cover">
+             <img src="berserk/91VnBGL+wFL._UF894,1000_QL80_6.jpg" class="logo" alt="logo" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="meta">
+            <h2 class="book-title">berserk chapter 6</h2>
+            <div class="author">kentaro miura</div>
+            <p class="desc"></p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn">اذهب لقرات الفصل</button>
+          <button class="btn primary">أضف للمفضلة❤️</button>
+        </div>
+      </article>
+
+    </section>
+
+  </div>
+</body>
+</html>

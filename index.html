@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="kyword" content="manga,best manga, manga store, book store">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Yousef & Mostafa">
+    <title>Manga Store</title>
+    
+    <style>
+        /* ---- أسلوب عام للجسم ---- */
+        body {
+            font-family: Arial, sans-serif; /* خط بسيط وسهل القراءة */
+            background-color: #f0f4f8; /* لون خلفية مريح للعين */
+            color: #333; /* لون نص داكن للقراءة المريحة */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ---- ترويسة الموقع ---- */
+        header {
+            background-color: #6c5ce7; /* لون مريح للعين */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+       
+
+        header h1 {
+            margin: 0;
+        }
+
+        /* ---- حاوية الكتب ---- */
+        .books-container {
+            display: flex; /* ترتيب الكتب بشكل أفقي */
+            flex-wrap: wrap; /* لو المساحة صغيرة، ينزل للصف التالي */
+            justify-content: center;
+            padding: 20px;
+            gap: 20px; /* مسافة بين الكتب */
+        }
+
+        /* ---- كل بطاقة كتاب ---- */
+        .book {
+            background-color: white;
+            border-radius: 10px; /* حواف دائرية */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* ظل خفيف */
+            width: 200px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s; /* حركة خفيفة عند المرور */
+        }
+
+        .book:hover {
+            transform: scale(1.05); /* تكبير خفيف عند المرور */
+        }
+
+        .book img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .book h3 {
+            font-size: 18px;
+            margin: 10px 0 5px 0;
+        }
+
+        .book p {
+            font-size: 14px;
+             color: #666; /* لون نص ثانوي */
+          --accent: #3b82f6;     /* لون أزرار وعناصر بارزة */
+        }
+    </style>
+</head>
+<body>
+    <!-- ترويسة الموقع -->
+    <header>
+        <h1>Manga Store</h1>
+        <p> "Read the best manga"</p>
+        <button class="btn">🔎 ابحث عن المانجا </button>
+    </header>
+  <!--الكتاب الاول-->
+  <a href="book1.html" class="book-link"><!-- حاوية الكتب -->
+    <div class="books-container">
+        <!-- بطاقة كتاب الاول -->
+        <div class="book">
+            <img src="https://images.thalia.media/07/-/684aefcbb7f54e49a4fd8fc58fde9794/vagabond-01-taschenbuch-takehiko-inoue.jpeg" alt="Book 1">
+            <h3> vagabond chapter 1 </h3>
+            <p>بداية القصة مع شينمين تاكيزو الشاب العنيف والمتهور، اللي بيعيش وسط الفوضى بعد معركة سيكيجاهارا. بنشوف شخصيته القاسية وحبه للقتال، ورغبته إنه يبقى أقوى محارب تحت السماء، من غير أي وعي حقيقي بمعنى القوة.</p>
+            <button class="btn">300 EGP</button>
+            <button class="btn primary">أضف للمفضلة❤️</button>
+        </div></a>
+        <!-- الكتاب التاني بتاع berserk-->
+        <a href="تجربه رقم 1.html" target="_blank"> <div class="book">
+            <img src="data:image/jpeg;base64,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" alt="Book 2">
+            <h3> berserk manga </h3>
+            <p>مانجا خيالية مظلمة تركز على صراع المرتزق غاتس ضد صديقه السابق غريفيث، الذي ضحى بفرقته ليصبح شيطاناً.</p>
+            <button class="btn">500 EGP</button>
+            <button class="btn primary">أضف للمفضلة❤️</button>
+        </div></a>
+    
+
+        <div class="book">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.BIVCJnE3cuNGBKtOHqNPPQHaKK?cb=ucfimg2&ucfimg=1&w=761&h=1045&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Book 3">
+            <h3> vagabond chapter 3</h3>
+            <p>في هذا الشابتر تتصاعد حدة الصراع حول شينمين تاكيزو بعد أن يتحوّل من شاب متهور إلى شخص مطارد ومكروه من الجميع. بنشوفه محاصر بالخوف والرفض، ويبدأ إحساسه بالقوة يهتز لأول مرة.
+الشابتر يركّز على العزلة والضياع، ويمهّد نفسيًا لانكسار الصورة القديمة عن القوة، ولبداية رحلة التغيير الحقيقية التي ستعيد تشكيل هويته لاحقًا باسم مياموتو موساشي.</p>
+    <button class="btn">600 EGP</button>
+            <button class="btn primary">أضف للمفضلة❤️</button>
+        </div>
+    </div>
+</body>
+</html>
